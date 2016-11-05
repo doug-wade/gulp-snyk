@@ -14,12 +14,12 @@ module.exports = function (opts, cb) {
 			gutil.log(`testing for vulnerabilities in package in directory ${opts.directory}`);
 		}
 		snyk.test(opts.directory).then(data => {
-			if (data.vulnerabilities.length < 1) {
+			if (data.vulnerabilities.length > 0) {
 				const message = `Snyk found vulnerabilities ${JSON.stringify(data.vulnerabilities)}`;
 				gutil.log(message);
 				cb(new PluginError(message));
 			} else {
-				gutil.log(`snyk found no vulnerabilities!`);
+				gutil.log(`🎉 Congratulations, Snyk found no vulnerabilities! 🎉`);
 				cb();
 			}
 		});
