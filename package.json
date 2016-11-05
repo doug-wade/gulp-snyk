@@ -1,0 +1,35 @@
+{
+  "name": "gulp-snyk",
+  "version": "0.0.0",
+  "description": "gulp plugin for using snyk",
+  "license": "MIT",
+  "repository": "doug-wade/gulp-snyk",
+  "author": {
+    "name": "Doug Wade",
+    "email": "doug@dougwade.io",
+    "url": "dougwade.io"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "gulpplugin",
+    "snyk",
+    "security",
+    "gulp"
+  ],
+  "dependencies": {
+    "gulp-util": "^3.0.7",
+    "snyk": "1.19.1"
+  },
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "xo": "^0.17.0"
+  }
+}
