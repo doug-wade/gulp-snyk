@@ -20,7 +20,7 @@ module.exports = function (opts, cb) {
 				cb(new PluginError(message));
 			} else {
 				gutil.log(`🎉 Congratulations, Snyk found no vulnerabilities! 🎉`);
-				cb();
+				cb(undefined, data.vulnerabilities);
 			}
 		});
 	} else {
