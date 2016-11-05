@@ -6,8 +6,9 @@ const PluginError = require('gulp-util').PluginError;
 
 module.exports = function (opts, cb) {
 	opts = opts || {};
+	opts.command = opts.command || 'test';
 	opts.directory = opts.directory || process.cwd();
-	opts.options = opts.options || {};
+	opts.options = opts.options || {dev: true};
 
 	if (opts.command === 'test') {
 		if (opts.debug) {

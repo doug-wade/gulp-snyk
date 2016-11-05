@@ -9,25 +9,30 @@
 $ npm install --save-dev gulp-snyk
 ```
 
+Or
+
+```
+$ yarn add --dev gulp-snyk
+```
 
 ## Usage
 
 To only break the build on vulnerabilities, use snyk without any options
 
-```js
+```javascript
 const snyk = require('gulp-snyk');
 gulp.task('protect', function(cb) {
-  return snyk({ command: 'protect' });
+  return snyk({ command: 'protect' }, cb);
 });
 gulp.task('test', function() {
-  return snyk({ command: 'test' });
+  return snyk({ command: 'test' }, cb);
 });
 gulp.task('prepublish', 'protect');
 ```
 
 And then, in your package.json
 
-```js
+```javascript
 {
   "scripts": {
     "prepublish": "gulp prepublish",
@@ -38,16 +43,25 @@ And then, in your package.json
 
 ## API
 
-### snyk([options])
+### snyk([options], cb)
 
 #### options
+
+A hash of options to configure snyk.  If this is omitted, then it is the
+equivalent of passing the following options hash.
+
+```javascript
+gulp.task('snyk-test', function(cb) {
+	return snyk({command: 'test', directory: process.cwd(), debug: false, options: { dev: true }}, cb);
+});
+```
 
 ##### command
 
 Type: `string`<br>
 Default: `test`
 Example:
-```js
+```javascript
 gulp.task('protect', function(cb) {
 	return snyk({command: 'protect'}, cb);
 });
@@ -61,39 +75,50 @@ For instance: auth, test, wizard, protect, monitor, policy.
 Type: `string`<br>
 Default: `process.cwd()`
 Example:
-```js
+```javascript
 gulp.task('snyk-test', function(cb) {
 	return snyk({command: 'test', directory: path.join(process.cwd(), 'packages', 'my-package')}, cb);
 });
 ```
 
-The directory to run the snyk command in
+The directory that contains the package on which to run the snyk command.
 
 ##### options
 
 Type: `object`<br>
 Default: `{ dev: true }`
 Example:
-```js
+```javascript
 gulp.task('snyk-wizard', function(cb) {
 	return snyk({command: 'wizard', options: {help: true}}, cb);
 });
 ```
 
-The options supported by the snyk command line
+The options supported by the [snyk command line](https://snyk.io/docs/using-snyk/).
 
 ##### debug
 
 Type: `boolean`<br>
 Default: `false`
 Example:
-```js
+```javascript
 gulp.task('snyk-help', function(cb) {
 	return snyk({command: 'test', debug: true}, cb);
 });
 ```
 
 Turns on debug logging
+
+#### cb
+
+The callback from the asynchronous gulp task, the function passed as the first
+argument to the gulp task callback.  For example:
+
+```javascript
+gulp.task('protect', function(cb) {
+  return snyk({ command: 'protect' }, cb);
+});
+```
 
 ## License
 
