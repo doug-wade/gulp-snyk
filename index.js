@@ -7,6 +7,7 @@ const PluginError = require('gulp-util').PluginError;
 module.exports = function (opts, cb) {
 	opts = opts || {};
 	opts.directory = opts.directory || process.cwd();
+	opts.options = opts.options || {};
 
 	if (opts.command === 'test') {
 		if (opts.debug) {
@@ -39,6 +40,10 @@ module.exports = function (opts, cb) {
 };
 
 function hashToString(hash) {
+	if (!hash) {
+		return '';
+	}
+
 	let str = '';
 	Object.keys(hash).forEach(key => {
 		if (typeof hash[key] === 'string') {
