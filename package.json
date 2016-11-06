@@ -1,6 +1,6 @@
 {
   "name": "gulp-snyk",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "gulp plugin for using snyk",
   "license": "MIT",
   "repository": "doug-wade/gulp-snyk",
