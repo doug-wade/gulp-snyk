@@ -1,8 +1,8 @@
 'use strict';
-const cp = require('child_process');
 const gutil = require('gulp-util');
 const snyk = require('snyk');
 const PluginError = require('gulp-util').PluginError;
+const exec = require('npm-run').exec;
 
 module.exports = function (opts, cb) {
 	opts = opts || {};
@@ -25,12 +25,15 @@ module.exports = function (opts, cb) {
 			}
 		});
 	} else {
-		const cmd = `${opts.directory}/node_modules/.bin/snyk ${opts.command} ${hashToString(opts.options)}`;
+		const cmd = `snyk ${opts.command} ${hashToString(opts.options)}`;
 		if (opts.debug) {
 			gutil.log(`running command ${cmd}`);
 		}
-		cp.exec(cmd, (err, data) => {
+		exec(cmd, {cwd: opts.directory}, (err, data) => {
 			if (err) {
+				if (opts.debug) {
+					gutil.log(`got error from npm-run`, err);
+				}
 				cb(err);
 			} else {
 				gutil.log(data);

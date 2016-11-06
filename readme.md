@@ -41,6 +41,8 @@ And then, in your package.json
 }
 ```
 
+For a realistic use-case, check out [the clefs plugin generator](https://github.com/doug-wade/clefs/tree/master/packages/generator-clefs-plugin)
+
 ## API
 
 ### snyk([options], cb)
