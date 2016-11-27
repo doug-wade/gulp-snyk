@@ -13,7 +13,8 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "xo && ava"
+    "coverage": "nyc report --reporter lcov | codecov",
+    "test": "xo && nyc ava && nyc check-coverage --lines 50 --functions 50 --branches 50"
   },
   "files": [
     "index.js"
@@ -32,6 +33,8 @@
   },
   "devDependencies": {
     "ava": "^0.17.0",
+    "codecov": "^1.0.1",
+    "nyc": "^10.0.0",
     "xo": "^0.17.0"
   }
 }
