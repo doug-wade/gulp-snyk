@@ -1,4 +1,4 @@
-# gulp-snyk [![Build Status](https://travis-ci.org/doug-wade/gulp-snyk.svg?branch=master)](https://travis-ci.org/doug-wade/gulp-snyk)
+# gulp-snyk [![Build Status](https://travis-ci.org/doug-wade/gulp-snyk.svg?branch=master)](https://travis-ci.org/doug-wade/gulp-snyk) ![appveyor build status](https://ci.appveyor.com/api/projects/status/github/doug-wade/gulp-snyk?branch=master&svg=true)
 
 > gulp plugin for using Snyk
 
