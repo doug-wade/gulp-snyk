@@ -29,7 +29,7 @@
     "gulp-util": "^3.0.7",
     "npm-run": "4.1.0",
     "resolve": "1.2.0",
-    "snyk": "1.23.0"
+    "snyk": "1.23.2"
   },
   "devDependencies": {
     "ava": "^0.17.0",
