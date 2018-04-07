@@ -27,7 +27,7 @@
   ],
   "dependencies": {
     "gulp-util": "^3.0.7",
-    "npm-run": "4.1.0",
+    "npm-run": "4.1.1",
     "resolve": "1.2.0",
     "snyk": "1.24.5"
   },
