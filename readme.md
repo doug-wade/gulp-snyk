@@ -24,11 +24,28 @@ const snyk = require('gulp-snyk');
 gulp.task('protect', function(cb) {
   return snyk({ command: 'protect' }, cb);
 });
-gulp.task('test', function() {
+gulp.task('prepare', 'protect');
+```
+
+A more feature-ful configuration might be
+
+```javascript
+const snyk = require('gulp-snyk');
+gulp.task('protect', function(cb) {
+  return snyk({ command: 'protect' }, cb);
+});
+gulp.task('auth', function() {
+  return snyk({ command: 'auth' }, cb);
+});
+gulp.task('test', ['auth'], function() {
   return snyk({ command: 'test' }, cb);
 });
-gulp.task('prepublish', 'protect');
+gulp.task('prepare', 'protect');
 ```
+
+Note the dependency on `auth` for the `test` task -- [Snyk now requires authentication](https://snyk.io/blog/requiring-authentication/), so we make sure
+that the user is logged in before running the test.  You will also need to add a Snyk token
+as an environment variable to your CI server.
 
 And then, in your package.json
 
@@ -41,7 +58,9 @@ And then, in your package.json
 }
 ```
 
-For a realistic use-case, check out [the clefs plugin generator](https://github.com/doug-wade/clefs/tree/master/packages/generator-clefs-plugin)
+You may also consider adding an npm alias for `gulp auth`.
+
+For a real-world use-case, check out [the clefs plugin generator](https://github.com/doug-wade/clefs/tree/master/packages/generator-clefs-plugin)
 
 ## API
 
