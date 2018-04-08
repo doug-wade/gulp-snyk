@@ -14,9 +14,10 @@ module.exports = function (opts, cb) {
 		if (opts.debug) {
 			gutil.log(`testing for vulnerabilities in package in directory ${opts.directory}`);
 		}
-		snyk.test(opts.directory)).then(data => {
+		snyk.test(opts.directory).then(data => {
 			if (data.vulnerabilities.length > 0) {
-				const message = `Snyk found vulnerabilities ${JSON.stringify(data.vulnerabilities)}`;
+				const vulnerabiltyToString = vulnerability => `id: ${vulnerability.id}\ndescription: ${vulnerability.description}\n\n`;
+				const message = `Snyk found vulnerabilities\n\n${data.vulnerabilities.map(vulnerabiltyToString)}`;
 				gutil.log(message);
 				cb(new PluginError(message));
 			} else {
