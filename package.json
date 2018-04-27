@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "ava": "^0.18.0",
-    "codecov": "^2.0.1",
+    "codecov": "^3.0.1",
     "nyc": "^11.0.2",
     "xo": "^0.18.0"
   }
