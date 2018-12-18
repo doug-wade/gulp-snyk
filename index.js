@@ -1,8 +1,8 @@
 'use strict';
 const gutil = require('gulp-util');
 const snyk = require('snyk');
-const PluginError = require('gulp-util').PluginError;
-const exec = require('npm-run').exec;
+const {PluginError} = require('gulp-util');
+const {exec} = require('npm-run');
 
 module.exports = function (opts, cb) {
 	opts = opts || {};
@@ -21,7 +21,7 @@ module.exports = function (opts, cb) {
 				gutil.log(message);
 				cb(new PluginError(message));
 			} else {
-				gutil.log(`🎉 Congratulations, Snyk found no vulnerabilities! 🎉`);
+				gutil.log('🎉 Congratulations, Snyk found no vulnerabilities! 🎉');
 				cb(undefined, data.vulnerabilities);
 			}
 		});
@@ -33,7 +33,7 @@ module.exports = function (opts, cb) {
 		exec(cmd, {cwd: opts.directory}, (err, data) => {
 			if (err) {
 				if (opts.debug) {
-					gutil.log(`got error from npm-run`, err);
+					gutil.log('got error from npm-run', err);
 				}
 				cb(err);
 			} else {
